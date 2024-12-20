@@ -1,0 +1,1364 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Disease Prediction Model Code &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'NormalizationVerisonTwo';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BackEnd-FastAPI Code" href="FastApiDoc.html" />
+    <link rel="prev" title="Model Presentation Video" href="eas503/video1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro_root.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logoub.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logoub.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro_root.html">
+                    About Me
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="portfolio.html">Portfolio</a></li>
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="eas503/EAS503Summary.html">Disease Prediction Model-EAS503 Project Summary</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="eas503/video1.html">Model Presentation Video</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Disease Prediction Model Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FastApiDoc.html">BackEnd-FastAPI Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="StreamlitAppDoc.html">FrontEnd-Streamlit Code</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FNormalizationVerisonTwo.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/NormalizationVerisonTwo.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Disease Prediction Model Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="disease-prediction-model-code">
+<h1>Disease Prediction Model Code<a class="headerlink" href="#disease-prediction-model-code" title="Link to this heading">#</a></h1>
+<p>This code cell imports all the necessary libraries and modules required for the following tasks:</p>
+<ul class="simple">
+<li><p><strong>Data Handling</strong>: Libraries such as <code class="docutils literal notranslate"><span class="pre">NumPy</span></code> and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> are used for data manipulation and analysis.</p></li>
+<li><p><strong>Data Visualization</strong>: <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> and <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> are included for creating insightful visualizations.</p></li>
+<li><p><strong>Machine Learning</strong>: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, <code class="docutils literal notranslate"><span class="pre">XGBoost</span></code>, and <code class="docutils literal notranslate"><span class="pre">imblearn</span></code> are used for building, optimizing, and evaluating machine learning models.</p></li>
+<li><p><strong>Pipeline and Feature Engineering</strong>: Tools from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> for preprocessing, feature selection, and pipeline creation.</p></li>
+<li><p><strong>Model Evaluation</strong>: Metrics such as accuracy, F1-score, confusion matrix, and classification reports to assess model performance.</p></li>
+<li><p><strong>Dataset Profiling</strong>: <code class="docutils literal notranslate"><span class="pre">ydata_profiling</span></code> is used to generate comprehensive profiling reports for exploratory data analysis.</p></li>
+<li><p><strong>Model Deployment</strong>: <code class="docutils literal notranslate"><span class="pre">mlflow</span></code> and <code class="docutils literal notranslate"><span class="pre">joblib</span></code> support model tracking, saving, and deployment.</p></li>
+<li><p><strong>Database Operations</strong>: The <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> library is used for interacting with SQLite databases.</p></li>
+<li><p><strong>Inline Plotting</strong>: <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> ensures all visualizations are displayed inline in the notebook.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">FunctionTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">VarianceThreshold</span><span class="p">,</span> <span class="n">SelectFromModel</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">GradientBoostingClassifier</span><span class="p">,</span> <span class="n">StackingClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">RidgeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">imblearn.over_sampling</span> <span class="kn">import</span> <span class="n">SMOTE</span>
+<span class="kn">from</span> <span class="nn">ydata_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>  
+<span class="kn">import</span> <span class="nn">mlflow</span>
+<span class="kn">from</span> <span class="nn">mlflow.models</span> <span class="kn">import</span> <span class="n">infer_signature</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+<span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">from</span> <span class="nn">sqlite3</span> <span class="kn">import</span> <span class="n">Error</span>
+<span class="kn">from</span> <span class="nn">xgboost</span> <span class="kn">import</span> <span class="n">XGBClassifier</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell is responsible for loading the diabetes dataset into the notebook for analysis. It uses the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> library to read the data from a CSV file named <code class="docutils literal notranslate"><span class="pre">diabetes.csv</span></code> located in the current directory. The dataset is stored in a DataFrame called <code class="docutils literal notranslate"><span class="pre">beforeDataClean</span></code>.</p>
+<p>This step is critical for initializing the data analysis process and serves as the foundation for all subsequent data manipulation and modeling tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load dataset</span>
+<span class="n">beforeDataClean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.\diabetes.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Dataset Profiling</strong>:</p>
+<ul class="simple">
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">ProfileReport</span></code> from the <code class="docutils literal notranslate"><span class="pre">ydata_profiling</span></code> library to generate a comprehensive profiling report for the <code class="docutils literal notranslate"><span class="pre">beforeDataClean</span></code> dataset.</p></li>
+<li><p>The report provides insights into dataset structure, data types, missing values, and summary statistics.</p></li>
+<li><p>The output is displayed directly within the notebook as an iframe.</p></li>
+</ul>
+</li>
+<li><p><strong>Correlation Analysis</strong>:</p>
+<ul class="simple">
+<li><p>Computes the correlation matrix for all numerical columns in the dataset.</p></li>
+<li><p>Visualizes the correlation matrix using a heatmap created with <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, providing a clear representation of relationships between numerical features.</p></li>
+<li><p>Customizes the heatmap with annotations, a color map (“coolwarm”), and a title for improved readability.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate Profile Report</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generating profile report...&quot;</span><span class="p">)</span>
+<span class="n">profile</span> <span class="o">=</span> <span class="n">ProfileReport</span><span class="p">(</span><span class="n">beforeDataClean</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Diabetes Dataset Profiling Report&quot;</span><span class="p">)</span>
+<span class="n">profile</span><span class="o">.</span><span class="n">to_notebook_iframe</span><span class="p">()</span>
+<span class="c1"># Compute the correlation matrix for numerical columns</span>
+<span class="n">numerical_columns</span> <span class="o">=</span> <span class="n">beforeDataClean</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;number&#39;</span><span class="p">])</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">numerical_columns</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>  <span class="c1"># Set the figure size</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Correlation Matrix Heatmap&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell focuses on cleaning the dataset to prepare it for further analysis and modeling. The following steps are performed:</p>
+<ol class="arabic simple">
+<li><p><strong>Create a Copy</strong>:</p>
+<ul class="simple">
+<li><p>A deep copy of the <code class="docutils literal notranslate"><span class="pre">beforeDataClean</span></code> DataFrame is created to avoid modifying the original dataset. The copy is stored in <code class="docutils literal notranslate"><span class="pre">afterDataClean</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Replace Invalid Values</strong>:</p>
+<ul class="simple">
+<li><p>Columns <code class="docutils literal notranslate"><span class="pre">Glucose</span></code>, <code class="docutils literal notranslate"><span class="pre">BloodPressure</span></code>, <code class="docutils literal notranslate"><span class="pre">SkinThickness</span></code>, <code class="docutils literal notranslate"><span class="pre">Insulin</span></code>, and <code class="docutils literal notranslate"><span class="pre">BMI</span></code> are checked for invalid entries (e.g., zeros).</p></li>
+<li><p>Invalid entries are replaced with <code class="docutils literal notranslate"><span class="pre">NaN</span></code> to handle them appropriately during the cleaning process.</p></li>
+</ul>
+</li>
+<li><p><strong>Fill Missing Values</strong>:</p>
+<ul class="simple">
+<li><p>Missing values in <code class="docutils literal notranslate"><span class="pre">Glucose</span></code> and <code class="docutils literal notranslate"><span class="pre">BloodPressure</span></code> are filled with their respective column means.</p></li>
+<li><p>Missing values in <code class="docutils literal notranslate"><span class="pre">SkinThickness</span></code>, <code class="docutils literal notranslate"><span class="pre">Insulin</span></code>, and <code class="docutils literal notranslate"><span class="pre">BMI</span></code> are filled with their respective column medians for robustness against outliers.</p></li>
+</ul>
+</li>
+<li><p><strong>Check for Remaining Missing Values</strong>:</p>
+<ul class="simple">
+<li><p>Prints the count of remaining <code class="docutils literal notranslate"><span class="pre">NaN</span></code> values to ensure the dataset is free of missing data.</p></li>
+</ul>
+</li>
+<li><p><strong>Prepare Final Data</strong>:</p>
+<ul class="simple">
+<li><p>The cleaned data is stored in the <code class="docutils literal notranslate"><span class="pre">data</span></code> DataFrame, which will be used in subsequent processing steps.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data Cleaning</span>
+<span class="n">afterDataClean</span> <span class="o">=</span> <span class="n">beforeDataClean</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">afterDataClean</span><span class="p">[[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="s1">&#39;BloodPressure&#39;</span><span class="p">,</span> <span class="s1">&#39;SkinThickness&#39;</span><span class="p">,</span> <span class="s1">&#39;Insulin&#39;</span><span class="p">,</span> <span class="s1">&#39;BMI&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">afterDataClean</span><span class="p">[[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">,</span> <span class="s1">&#39;BloodPressure&#39;</span><span class="p">,</span> <span class="s1">&#39;SkinThickness&#39;</span><span class="p">,</span> <span class="s1">&#39;Insulin&#39;</span><span class="p">,</span> <span class="s1">&#39;BMI&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">))</span>
+<span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;BloodPressure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;BloodPressure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;BloodPressure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;SkinThickness&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;SkinThickness&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;SkinThickness&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+<span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;Insulin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;Insulin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;Insulin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+<span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;BMI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;BMI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">afterDataClean</span><span class="p">[</span><span class="s1">&#39;BMI&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+
+<span class="c1"># Check for remaining NaN values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Remaining NaN values:&quot;</span><span class="p">,</span> <span class="n">afterDataClean</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+
+<span class="c1"># Final data for processing</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">afterDataClean</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell manages database operations by establishing a connection, creating tables, inserting data, and retrieving it for analysis. The following key steps are performed:</p>
+<ol class="arabic simple">
+<li><p><strong>Database Connection</strong>:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">create_connection</span></code> function is defined to establish a connection to an SQLite database.</p></li>
+<li><p>Includes optional functionality to delete an existing database file before creating a new one.</p></li>
+<li><p>Ensures foreign key constraints are enabled.</p></li>
+</ul>
+</li>
+<li><p><strong>Table Creation</strong>:</p>
+<ul class="simple">
+<li><p>Three tables are created in the database:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Patient</span></code>: Stores basic patient information (e.g., <code class="docutils literal notranslate"><span class="pre">Pregnancies</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HealthMetrics</span></code>: Stores health-related metrics (e.g., <code class="docutils literal notranslate"><span class="pre">Glucose</span></code>, <code class="docutils literal notranslate"><span class="pre">BloodPressure</span></code>, <code class="docutils literal notranslate"><span class="pre">BMI</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Outcome</span></code>: Stores the diabetes status of patients.</p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">create_table</span></code> function executes SQL statements to define the schema for each table.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Insertion</strong>:</p>
+<ul class="simple">
+<li><p>Three separate functions insert data into the respective tables:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert_patient_data</span></code>: Inserts patient demographic data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert_health_metrics</span></code>: Inserts health metrics data, linking it to patient IDs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert_outcome</span></code>: Inserts diabetes outcome data, also linked to patient IDs.</p></li>
+</ul>
+</li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">conn.commit()</span></code> to ensure changes are saved to the database.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Retrieval</strong>:</p>
+<ul class="simple">
+<li><p>Combines data from all three tables using SQL <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> statements.</p></li>
+<li><p>Retrieves the consolidated dataset into a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame for further analysis.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Validation</strong>:</p>
+<ul class="simple">
+<li><p>Displays the first few rows of the consolidated dataset and prints descriptive statistics to verify data integrity.</p></li>
+</ul>
+</li>
+<li><p><strong>Database Closure</strong>:</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Database Connection Functions</span>
+<span class="k">def</span> <span class="nf">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">,</span> <span class="n">delete_db</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">delete_db</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">db_file</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_file</span><span class="p">)</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA foreign_keys = 1&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conn</span>
+
+<span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">create_table_sql</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create_table_sql</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># Create database and tables</span>
+<span class="n">dbConnection</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="s2">&quot;normalizedData.db&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="n">patientTable</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;CREATE TABLE Patient (</span>
+<span class="s1">    PatientID INTEGER PRIMARY KEY AUTOINCREMENT,</span>
+<span class="s1">    Pregnancies INTEGER,</span>
+<span class="s1">    Age INT</span>
+<span class="s1">);&#39;&#39;&#39;</span>
+<span class="n">healthMatrixTable</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;CREATE TABLE HealthMetrics (</span>
+<span class="s1">    PatientID INTEGER,</span>
+<span class="s1">    Glucose INTEGER,</span>
+<span class="s1">    BloodPressure INTEGER,</span>
+<span class="s1">    SkinThickness INTEGER,</span>
+<span class="s1">    Insulin INTEGER,</span>
+<span class="s1">    BMI FLOAT,</span>
+<span class="s1">    DiabetesPedigreeFunction FLOAT,</span>
+<span class="s1">    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)</span>
+<span class="s1">);&#39;&#39;&#39;</span>
+<span class="n">diseaseOutcomeTable</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;CREATE TABLE Outcome (</span>
+<span class="s1">    PatientID INTEGER,</span>
+<span class="s1">    DiabetesStatus INTEGER,</span>
+<span class="s1">    FOREIGN KEY (PatientID) REFERENCES Patient(PatientID)</span>
+<span class="s1">);&#39;&#39;&#39;</span>
+
+<span class="n">create_table</span><span class="p">(</span><span class="n">dbConnection</span><span class="p">,</span> <span class="n">patientTable</span><span class="p">)</span>
+<span class="n">create_table</span><span class="p">(</span><span class="n">dbConnection</span><span class="p">,</span> <span class="n">healthMatrixTable</span><span class="p">)</span>
+<span class="n">create_table</span><span class="p">(</span><span class="n">dbConnection</span><span class="p">,</span> <span class="n">diseaseOutcomeTable</span><span class="p">)</span>
+
+<span class="c1"># Insert data into tables</span>
+<span class="k">def</span> <span class="nf">insert_patient_data</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;INSERT INTO Patient (Pregnancies, Age) VALUES (?, ?)&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;Pregnancies&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">])</span>
+        <span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">insert_health_metrics</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">patient_ids</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT PatientID FROM Patient&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">patient_id</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">patient_ids</span><span class="p">)):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            INSERT INTO HealthMetrics (</span>
+<span class="sd">                PatientID, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction</span>
+<span class="sd">            ) VALUES (?, ?, ?, ?, ?, ?, ?)</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="p">,</span>
+            <span class="p">(</span>
+                <span class="n">patient_id</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Glucose&quot;</span><span class="p">],</span>
+                <span class="n">row</span><span class="p">[</span><span class="s2">&quot;BloodPressure&quot;</span><span class="p">],</span>
+                <span class="n">row</span><span class="p">[</span><span class="s2">&quot;SkinThickness&quot;</span><span class="p">],</span>
+                <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Insulin&quot;</span><span class="p">],</span>
+                <span class="n">row</span><span class="p">[</span><span class="s2">&quot;BMI&quot;</span><span class="p">],</span>
+                <span class="n">row</span><span class="p">[</span><span class="s2">&quot;DiabetesPedigreeFunction&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">insert_outcome</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">patient_ids</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT PatientID FROM Patient&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">patient_id</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">(),</span> <span class="n">patient_ids</span><span class="p">)):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;INSERT INTO Outcome (PatientID, DiabetesStatus) VALUES (?, ?)&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">patient_id</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Outcome&quot;</span><span class="p">])</span>
+        <span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+<span class="n">insert_patient_data</span><span class="p">(</span><span class="n">dbConnection</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">insert_health_metrics</span><span class="p">(</span><span class="n">dbConnection</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="n">insert_outcome</span><span class="p">(</span><span class="n">dbConnection</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data inserted successfully!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load data from database</span>
+<span class="n">dataFromTable</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;SELECT </span>
+<span class="s1">    p.PatientID, </span>
+<span class="s1">    p.Pregnancies, </span>
+<span class="s1">    p.Age, </span>
+<span class="s1">    hm.Glucose, </span>
+<span class="s1">    hm.BloodPressure, </span>
+<span class="s1">    hm.SkinThickness, </span>
+<span class="s1">    hm.Insulin, </span>
+<span class="s1">    hm.BMI, </span>
+<span class="s1">    hm.DiabetesPedigreeFunction, </span>
+<span class="s1">    o.DiabetesStatus AS Outcome</span>
+<span class="s1">FROM Patient p</span>
+<span class="s1">JOIN HealthMetrics hm ON p.PatientID = hm.PatientID</span>
+<span class="s1">JOIN Outcome o ON p.PatientID = o.PatientID;&#39;&#39;&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">dataFromTable</span><span class="p">,</span> <span class="n">dbConnection</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">dbConnection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell prepares the dataset for machine learning by performing feature engineering, addressing class imbalance, and defining preprocessing steps. The following operations are performed:</p>
+<ol class="arabic simple">
+<li><p><strong>Feature and Target Separation</strong>:</p>
+<ul class="simple">
+<li><p>Separates the dataset into features (<code class="docutils literal notranslate"><span class="pre">X</span></code>) and target variable (<code class="docutils literal notranslate"><span class="pre">y</span></code>), dropping irrelevant columns such as <code class="docutils literal notranslate"><span class="pre">PatientID</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Feature Engineering</strong>:</p>
+<ul class="simple">
+<li><p>Creates new interaction features to capture relationships between variables:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Age_BMI</span></code>: The product of <code class="docutils literal notranslate"><span class="pre">Age</span></code> and <code class="docutils literal notranslate"><span class="pre">BMI</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Glucose_BloodPressure</span></code>: The product of <code class="docutils literal notranslate"><span class="pre">Glucose</span></code> and <code class="docutils literal notranslate"><span class="pre">BloodPressure</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Class Imbalance Handling</strong>:</p>
+<ul class="simple">
+<li><p>Applies SMOTE (Synthetic Minority Oversampling Technique) to balance the class distribution in the target variable.</p></li>
+<li><p>Resamples the data to ensure equitable representation of all target classes, printing the resulting class distribution for validation.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Splitting</strong>:</p>
+<ul class="simple">
+<li><p>Splits the resampled data into training and testing sets using an 80-20 split.</p></li>
+</ul>
+</li>
+<li><p><strong>Pipeline Definition</strong>:</p>
+<ul class="simple">
+<li><p>Defines key preprocessing steps for a machine learning pipeline:</p>
+<ul>
+<li><p><strong>Scaler</strong>: Standardizes the data using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> for uniform scaling.</p></li>
+<li><p><strong>PCA</strong>: Reduces dimensionality while retaining 95% of the variance.</p></li>
+<li><p><strong>Feature Selector</strong>: Removes low-variance features using <code class="docutils literal notranslate"><span class="pre">VarianceThreshold</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split features and target</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Outcome&#39;</span><span class="p">,</span><span class="s1">&#39;PatientID&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Outcome&#39;</span><span class="p">]</span>
+
+<span class="c1"># Feature Engineering (Experiment #3)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age_BMI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;BMI&#39;</span><span class="p">]</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Glucose_BloodPressure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;BloodPressure&#39;</span><span class="p">]</span>
+
+<span class="c1"># Handle imbalance</span>
+<span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Class distribution after SMOTE:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">y_res</span><span class="p">))</span>
+
+<span class="c1"># Split the data</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Define Pipeline Steps</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">feature_selector</span> <span class="o">=</span> <span class="n">VarianceThreshold</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell initializes several machine learning models and defines custom experiments to enhance predictive performance. The following components are included:</p>
+<ol class="arabic simple">
+<li><p><strong>Standard Models</strong>:</p>
+<ul class="simple">
+<li><p><strong>Logistic Regression (<code class="docutils literal notranslate"><span class="pre">log_reg</span></code>)</strong>: A linear model for binary classification with a maximum iteration limit of 200.</p></li>
+<li><p><strong>XGBoost Classifier (<code class="docutils literal notranslate"><span class="pre">xgb</span></code>)</strong>: An optimized gradient boosting implementation tuned for log loss.</p></li>
+<li><p><strong>Ridge Classifier (<code class="docutils literal notranslate"><span class="pre">ridge</span></code>)</strong>: A linear classifier with regularization to prevent overfitting.</p></li>
+<li><p><strong>Random Forest Classifier (<code class="docutils literal notranslate"><span class="pre">random_forest</span></code>)</strong>: An ensemble model with 200 estimators and a maximum depth of 10.</p></li>
+<li><p><strong>Gradient Boosting Classifier (<code class="docutils literal notranslate"><span class="pre">gb</span></code>)</strong>: A boosting model for improved predictive accuracy.</p></li>
+</ul>
+</li>
+<li><p><strong>Custom Experiments</strong>:</p>
+<ul class="simple">
+<li><p><strong>Stacking Classifier (<code class="docutils literal notranslate"><span class="pre">stacking_clf</span></code>)</strong>:</p>
+<ul>
+<li><p>Combines predictions from <code class="docutils literal notranslate"><span class="pre">RandomForest</span></code> and <code class="docutils literal notranslate"><span class="pre">GradientBoosting</span></code> models.</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">LogisticRegression</span></code> as the final estimator.</p></li>
+<li><p>Employs passthrough, allowing raw features to be included alongside base predictions for the final model.</p></li>
+</ul>
+</li>
+<li><p><strong>Custom XGBoost (<code class="docutils literal notranslate"><span class="pre">custom_xgb</span></code>)</strong>:</p>
+<ul>
+<li><p>Extends XGBoost with 300 estimators, a maximum depth of 15, and a learning rate of 0.05 to improve model performance on complex datasets.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Models</span>
+<span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;logloss&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">ridge</span> <span class="o">=</span> <span class="n">RidgeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">random_forest</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">gb</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Custom Experiments (Experiment #6 and #7)</span>
+<span class="n">stacking_clf</span> <span class="o">=</span> <span class="n">StackingClassifier</span><span class="p">(</span>
+    <span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;rf&#39;</span><span class="p">,</span> <span class="n">random_forest</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">,</span> <span class="n">gb</span><span class="p">)],</span> <span class="n">final_estimator</span><span class="o">=</span><span class="n">LogisticRegression</span><span class="p">(),</span>
+    <span class="n">passthrough</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">custom_xgb</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell defines preprocessing and classification pipelines for various machine learning models. Each pipeline standardizes the data, applies feature selection, reduces dimensionality, and fits a specific classifier. The following components are included in each pipeline:</p>
+<ol class="arabic simple">
+<li><p><strong>Preprocessing Steps</strong>:</p>
+<ul class="simple">
+<li><p><strong>Scaler</strong>: Standardizes the features using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> to ensure uniform scaling.</p></li>
+<li><p><strong>Feature Selector</strong>: Removes low-variance features with <code class="docutils literal notranslate"><span class="pre">VarianceThreshold</span></code>.</p></li>
+<li><p><strong>PCA</strong>: Reduces dimensionality by retaining 95% of the variance, optimizing computational efficiency.</p></li>
+</ul>
+</li>
+<li><p><strong>Classifiers</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Logistic</span> <span class="pre">Regression</span></code>: A linear model for binary classification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ridge</span> <span class="pre">Classifier</span></code>: A regularized linear model for robustness against overfitting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Random</span> <span class="pre">Forest</span></code>: An ensemble method using decision trees for classification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">XGBClassifier</span></code>: A high-performance gradient boosting algorithm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Gradient</span> <span class="pre">Boosting</span></code>: Another boosting algorithm optimized for accuracy.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stacking</span></code>: Combines predictions from <code class="docutils literal notranslate"><span class="pre">Random</span> <span class="pre">Forest</span></code> and <code class="docutils literal notranslate"><span class="pre">Gradient</span> <span class="pre">Boosting</span></code> with <code class="docutils literal notranslate"><span class="pre">Logistic</span> <span class="pre">Regression</span></code> as the final estimator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">XGB</span></code>: An extended XGBoost model with tuned hyperparameters for enhanced performance.</p></li>
+</ul>
+</li>
+<li><p><strong>Pipeline Dictionary</strong>:</p>
+<ul class="simple">
+<li><p>Stores all pipelines in a dictionary named <code class="docutils literal notranslate"><span class="pre">pipelines</span></code>, allowing for easy iteration and evaluation of different models.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define Pipelines</span>
+<span class="n">pipelines</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;feature_selector&#39;</span><span class="p">,</span> <span class="n">feature_selector</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">log_reg</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;Ridge Classifier&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;feature_selector&#39;</span><span class="p">,</span> <span class="n">feature_selector</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">ridge</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;Random Forest&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;feature_selector&#39;</span><span class="p">,</span> <span class="n">feature_selector</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">random_forest</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;XGBClassifier&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;feature_selector&#39;</span><span class="p">,</span> <span class="n">feature_selector</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">xgb</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;Gradient Boosting&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;feature_selector&#39;</span><span class="p">,</span> <span class="n">feature_selector</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">gb</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;Stacking&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;feature_selector&#39;</span><span class="p">,</span> <span class="n">feature_selector</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">stacking_clf</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="s1">&#39;Custom XGB&#39;</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;feature_selector&#39;</span><span class="p">,</span> <span class="n">feature_selector</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pca&#39;</span><span class="p">,</span> <span class="n">pca</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">custom_xgb</span><span class="p">)</span>
+    <span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell initializes the setup for evaluating machine learning models using cross-validation. The following steps are performed:</p>
+<ol class="arabic simple">
+<li><p><strong>Results Dictionary</strong>:</p>
+<ul class="simple">
+<li><p>Creates an empty dictionary named <code class="docutils literal notranslate"><span class="pre">results</span></code> to store the evaluation metrics for each model.</p></li>
+</ul>
+</li>
+<li><p><strong>Cross-Validation Strategy</strong>:</p>
+<ul class="simple">
+<li><p>Utilizes <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> to split the dataset into 10 folds while preserving the class distribution in each fold.</p></li>
+<li><p>Parameters:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_splits=10</span></code>: Divides the dataset into 10 folds for training and validation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shuffle=True</span></code>: Shuffles the data before splitting to ensure randomness.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>MLflow Configuration</strong>:</p>
+<ul class="simple">
+<li><p>Sets up the MLflow tracking server using the provided URI, username, and password.</p></li>
+<li><p>Defines the experiment name as <code class="docutils literal notranslate"><span class="pre">&quot;diseasePredictionSystemModel&quot;</span></code> to organize logged runs.</p></li>
+</ul>
+</li>
+<li><p><strong>Cross-Validation and Evaluation</strong>:</p>
+<ul class="simple">
+<li><p>Iterates through each pipeline in the <code class="docutils literal notranslate"><span class="pre">pipelines</span></code> dictionary.</p></li>
+<li><p>Performs cross-validation on the training set (<code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>) using <code class="docutils literal notranslate"><span class="pre">StratifiedKFold</span></code> and calculates F1 scores.</p></li>
+<li><p>Trains the pipeline on the full training set and evaluates it on the test set (<code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code>).</p></li>
+<li><p>Computes various performance metrics, including:</p>
+<ul>
+<li><p>Mean and standard deviation of cross-validation F1 scores.</p></li>
+<li><p>Accuracy and F1 score on the test set.</p></li>
+<li><p>Confusion matrix components: true positives (TP), true negatives (TN), false positives (FP), and false negatives (FN).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Results Storage</strong>:</p>
+<ul class="simple">
+<li><p>Stores the evaluation metrics for each model in the <code class="docutils literal notranslate"><span class="pre">results</span></code> dictionary for comparison.</p></li>
+</ul>
+</li>
+<li><p><strong>MLflow Logging</strong>:</p>
+<ul class="simple">
+<li><p>Logs key metrics such as mean cross-validation F1 score, accuracy, and confusion matrix components to MLflow.</p></li>
+<li><p>Captures the model’s signature (input-output schema) using <code class="docutils literal notranslate"><span class="pre">infer_signature</span></code>.</p></li>
+<li><p>Logs the trained pipeline to MLflow as an artifact for reproducibility and deployment.</p></li>
+<li><p>Assigns a registered model name based on the pipeline’s key in the dictionary.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Management</strong>:</p>
+<ul class="simple">
+<li><p>MLflow handles the storage and organization of trained models, allowing easy comparison and deployment in production.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MLFLOW_TRACKING_URI</span> <span class="o">=</span> <span class="s2">&quot;https://dagshub.com/s3akash/diseasePredictionSystemModel.mlflow&quot;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;MLFLOW_TRACKING_USERNAME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;s3akash&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;MLFLOW_TRACKING_PASSWORD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;4d779774d517aa973e2858c5d93af0e87a4ca457&#39;</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_tracking_uri</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">MLFLOW_TRACKING_URI</span><span class="p">)</span>
+<span class="n">mlflow</span><span class="o">.</span><span class="n">set_experiment</span><span class="p">(</span><span class="s2">&quot;diseasePredictionSystemModel&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">pipeline</span> <span class="ow">in</span> <span class="n">pipelines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">cv_f1_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kfold</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">)</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Mean CV F1 Score&#39;</span><span class="p">:</span> <span class="n">cv_f1_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="s1">&#39;Std CV F1 Score&#39;</span><span class="p">:</span> <span class="n">cv_f1_scores</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+        <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="s1">&#39;F1 Score&#39;</span><span class="p">:</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="s1">&#39;Confusion Matrix&#39;</span><span class="p">:</span> <span class="n">cm</span><span class="p">,</span>
+        <span class="s1">&#39;TP&#39;</span><span class="p">:</span> <span class="n">cm</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;TN&#39;</span><span class="p">:</span> <span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="s1">&#39;FP&#39;</span><span class="p">:</span> <span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="s1">&#39;FN&#39;</span><span class="p">:</span> <span class="n">cm</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="c1"># Log metrics</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;mean_cv_f1_score&quot;</span><span class="p">,</span> <span class="n">cv_f1_scores</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;std_cv_f1_score&quot;</span><span class="p">,</span> <span class="n">cv_f1_scores</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;f1_score&quot;</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;true_positives&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;true_negatives&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;false_positives&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;false_negatives&quot;</span><span class="p">,</span> <span class="n">cm</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">signature</span> <span class="o">=</span> <span class="n">infer_signature</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+        
+    <span class="c1"># Log the model</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">log_model</span><span class="p">(</span>
+        <span class="n">sk_model</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span>
+        <span class="n">artifact_path</span><span class="o">=</span><span class="s2">&quot;model&quot;</span><span class="p">,</span>
+        <span class="n">signature</span><span class="o">=</span><span class="n">signature</span><span class="p">,</span>
+        <span class="n">input_example</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span>
+        <span class="n">registered_model_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+    <span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code cell visualizes the performance of various machine learning models, identifies the best-performing model, and saves it for future use. The following steps are performed:</p>
+<ol class="arabic simple">
+<li><p><strong>Results Conversion</strong>:</p>
+<ul class="simple">
+<li><p>Converts the <code class="docutils literal notranslate"><span class="pre">results</span></code> dictionary into a pandas DataFrame for better organization and analysis.</p></li>
+<li><p>Transposes the DataFrame to align models as rows and metrics as columns for easier interpretation.</p></li>
+</ul>
+</li>
+<li><p><strong>F1-Score Visualization</strong>:</p>
+<ul class="simple">
+<li><p>Creates a bar plot comparing the “Mean CV F1 Score” and “F1 Score” for each model.</p></li>
+<li><p>Customizes the plot with:</p>
+<ul>
+<li><p>A title: “F1 Score Comparison Across Models.”</p></li>
+<li><p>Labels for axes: “Models” (x-axis) and “F1 Score” (y-axis).</p></li>
+<li><p>Rotated x-axis labels for better readability.</p></li>
+</ul>
+</li>
+<li><p>Displays the plot to provide a clear comparison of model performance.</p></li>
+</ul>
+</li>
+<li><p><strong>Best Model Identification</strong>:</p>
+<ul class="simple">
+<li><p>Determines the best-performing model based on the highest accuracy score in the results DataFrame.</p></li>
+<li><p>Stores the name of the best model for subsequent steps.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Saving</strong>:</p>
+<ul class="simple">
+<li><p>Saves the pipeline of the best-performing model as a <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> file (<code class="docutils literal notranslate"><span class="pre">disease_prediction_model2.pkl</span></code>) using <code class="docutils literal notranslate"><span class="pre">joblib</span></code>.</p></li>
+<li><p>Prints the name of the best model for reference.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate F1-score plot</span>
+<span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="p">)</span>
+<span class="n">results_df</span><span class="p">[[</span><span class="s1">&#39;Mean CV F1 Score&#39;</span><span class="p">,</span> <span class="s1">&#39;F1 Score&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;F1 Score Comparison Across Models&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Models&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;F1 Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Save best model</span>
+<span class="n">best_model_name</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">pipelines</span><span class="p">[</span><span class="n">best_model_name</span><span class="p">],</span> <span class="s1">&#39;./disease_prediction_model2.pkl&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best Model: </span><span class="si">{</span><span class="n">best_model_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                    Mean CV F1 Score Std CV F1 Score Accuracy  F1 Score  \
+Logistic Regression         0.724046          0.0518    0.745  0.753623   
+Ridge Classifier            0.711978        0.059794     0.75  0.754902   
+Random Forest               0.794854        0.062576    0.785  0.807175   
+XGBClassifier               0.791712        0.052744     0.79  0.801887   
+Gradient Boosting           0.771374        0.046129     0.76  0.779817   
+Stacking                    0.786486        0.051623     0.79  0.809091   
+Custom XGB                  0.791181        0.057984    0.805  0.820276   
+
+                         Confusion Matrix  TP  TN  FP  FN  
+Logistic Regression  [[71, 28], [23, 78]]  78  71  28  23  
+Ridge Classifier     [[73, 26], [24, 77]]  77  73  26  24  
+Random Forest        [[67, 32], [11, 90]]  90  67  32  11  
+XGBClassifier        [[73, 26], [16, 85]]  85  73  26  16  
+Gradient Boosting    [[67, 32], [16, 85]]  85  67  32  16  
+Stacking             [[69, 30], [12, 89]]  89  69  30  12  
+Custom XGB           [[72, 27], [12, 89]]  89  72  27  12  
+</pre></div>
+</div>
+<img alt="_images/636b77a46dc4a4454566e1a13c7b317d04a1be6604295f150f6427b5a2aaa22d.png" src="_images/636b77a46dc4a4454566e1a13c7b317d04a1be6604295f150f6427b5a2aaa22d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Model: Custom XGB
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Test Model Function</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_model</span></code>: A function to evaluate the model on individual test cases.</p></li>
+<li><p>Key steps:</p>
+<ul>
+<li><p>Adds feature-engineered columns (<code class="docutils literal notranslate"><span class="pre">Age_BMI</span></code> and <code class="docutils literal notranslate"><span class="pre">Glucose_BloodPressure</span></code>) to match the training set.</p></li>
+<li><p>Reorders columns in the test case to align with the model’s expected input structure.</p></li>
+<li><p>Prints the test case input and the model’s prediction for better interpretability.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Example Test Cases</strong>:</p>
+<ul class="simple">
+<li><p>Five test cases are created as pandas DataFrames, each with the following features:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pregnancies</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Glucose</span></code>, <code class="docutils literal notranslate"><span class="pre">BloodPressure</span></code>, <code class="docutils literal notranslate"><span class="pre">SkinThickness</span></code>, <code class="docutils literal notranslate"><span class="pre">Insulin</span></code>, <code class="docutils literal notranslate"><span class="pre">BMI</span></code>, and <code class="docutils literal notranslate"><span class="pre">DiabetesPedigreeFunction</span></code>.</p></li>
+</ul>
+</li>
+<li><p>These test cases represent diverse scenarios to evaluate the model’s prediction capability.</p></li>
+</ul>
+</li>
+<li><p><strong>Best Model Evaluation</strong>:</p>
+<ul class="simple">
+<li><p>Retrieves the best-performing pipeline from the <code class="docutils literal notranslate"><span class="pre">pipelines</span></code> dictionary using <code class="docutils literal notranslate"><span class="pre">best_model_name</span></code>.</p></li>
+<li><p>Uses the <code class="docutils literal notranslate"><span class="pre">test_model</span></code> function to predict outcomes for the defined test cases.</p></li>
+</ul>
+</li>
+<li><p><strong>Output</strong>:</p>
+<ul class="simple">
+<li><p>Displays the input values and predictions for each test case.</p></li>
+<li><p>Helps validate the model’s performance on unseen data and provides insights into how feature engineering affects predictions.</p></li>
+</ul>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test Cases</span>
+<span class="k">def</span> <span class="nf">test_model</span><span class="p">(</span><span class="n">model_pipeline</span><span class="p">,</span> <span class="n">test_cases</span><span class="p">,</span> <span class="n">feature_columns</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">test_case</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">test_cases</span><span class="p">):</span>
+        <span class="c1"># Add feature engineering</span>
+        <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;Age_BMI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;BMI&#39;</span><span class="p">]</span>
+        <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;Glucose_BloodPressure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;Glucose&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">test_case</span><span class="p">[</span><span class="s1">&#39;BloodPressure&#39;</span><span class="p">]</span>
+        <span class="c1"># Reorder columns to match training</span>
+        <span class="n">test_case</span> <span class="o">=</span> <span class="n">test_case</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">test_case</span><span class="p">)</span>
+        <span class="n">prediction</span> <span class="o">=</span> <span class="n">model_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_case</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Case </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: Input: </span><span class="si">{</span><span class="n">test_case</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">, Prediction: </span><span class="si">{</span><span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Example Test Cases</span>
+<span class="n">test_case_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Pregnancies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">22</span><span class="p">],</span>
+    <span class="s1">&#39;Glucose&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">85</span><span class="p">],</span>
+    <span class="s1">&#39;BloodPressure&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">70</span><span class="p">],</span>
+    <span class="s1">&#39;SkinThickness&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">],</span>
+    <span class="s1">&#39;Insulin&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">],</span>
+    <span class="s1">&#39;BMI&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">25.5</span><span class="p">],</span>
+    <span class="s1">&#39;DiabetesPedigreeFunction&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.201</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">test_case_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Pregnancies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">],</span>
+    <span class="s1">&#39;Glucose&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">165</span><span class="p">],</span>
+    <span class="s1">&#39;BloodPressure&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">85</span><span class="p">],</span>
+    <span class="s1">&#39;SkinThickness&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">],</span>
+    <span class="s1">&#39;Insulin&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">150</span><span class="p">],</span>
+    <span class="s1">&#39;BMI&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">35.0</span><span class="p">],</span>
+    <span class="s1">&#39;DiabetesPedigreeFunction&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.543</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">test_case_3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Pregnancies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">33</span><span class="p">],</span>
+    <span class="s1">&#39;Glucose&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">110</span><span class="p">],</span>
+    <span class="s1">&#39;BloodPressure&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">70</span><span class="p">],</span>
+    <span class="s1">&#39;SkinThickness&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">25</span><span class="p">],</span>
+    <span class="s1">&#39;Insulin&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">],</span>
+    <span class="s1">&#39;BMI&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">28.0</span><span class="p">],</span>
+    <span class="s1">&#39;DiabetesPedigreeFunction&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.350</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">test_case_4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Pregnancies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">19</span><span class="p">],</span>
+    <span class="s1">&#39;Glucose&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">75</span><span class="p">],</span>
+    <span class="s1">&#39;BloodPressure&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">],</span>
+    <span class="s1">&#39;SkinThickness&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">18</span><span class="p">],</span>
+    <span class="s1">&#39;Insulin&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">],</span>
+    <span class="s1">&#39;BMI&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">],</span>
+    <span class="s1">&#39;DiabetesPedigreeFunction&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.150</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">test_case_5</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Pregnancies&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">8</span><span class="p">],</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">],</span>
+    <span class="s1">&#39;Glucose&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">180</span><span class="p">],</span>
+    <span class="s1">&#39;BloodPressure&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">],</span>
+    <span class="s1">&#39;SkinThickness&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">],</span>
+    <span class="s1">&#39;Insulin&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">230</span><span class="p">],</span>
+    <span class="s1">&#39;BMI&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">40.0</span><span class="p">],</span>
+    <span class="s1">&#39;DiabetesPedigreeFunction&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.750</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="n">test_cases</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_case_1</span><span class="p">,</span> <span class="n">test_case_2</span><span class="p">,</span> <span class="n">test_case_3</span><span class="p">,</span> <span class="n">test_case_4</span><span class="p">,</span> <span class="n">test_case_5</span><span class="p">]</span>
+
+<span class="c1"># Evaluate Best Model</span>
+<span class="n">feature_columns</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">best_pipeline</span> <span class="o">=</span> <span class="n">pipelines</span><span class="p">[</span><span class="n">best_model_name</span><span class="p">]</span>
+<span class="n">test_model</span><span class="p">(</span><span class="n">best_pipeline</span><span class="p">,</span> <span class="n">test_cases</span><span class="p">,</span> <span class="n">feature_columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p><strong>Define Test Case</strong>:</p>
+<ul class="simple">
+<li><p>Creates a dictionary (<code class="docutils literal notranslate"><span class="pre">test_case</span></code>) with the following patient attributes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pregnancies</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code>, <code class="docutils literal notranslate"><span class="pre">Glucose</span></code>, <code class="docutils literal notranslate"><span class="pre">BloodPressure</span></code>, <code class="docutils literal notranslate"><span class="pre">SkinThickness</span></code>, <code class="docutils literal notranslate"><span class="pre">Insulin</span></code>, <code class="docutils literal notranslate"><span class="pre">BMI</span></code>, and <code class="docutils literal notranslate"><span class="pre">DiabetesPedigreeFunction</span></code>.</p></li>
+</ul>
+</li>
+<li><p>The test case represents a hypothetical patient scenario for prediction.</p></li>
+</ul>
+</li>
+<li><p><strong>POST Request</strong>:</p>
+<ul class="simple">
+<li><p>Sends the test case data as JSON to the API endpoint (<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8000/predict</span></code>) using the <code class="docutils literal notranslate"><span class="pre">requests.post</span></code> method.</p></li>
+<li><p>The endpoint is expected to process the input data and return a prediction.</p></li>
+</ul>
+</li>
+<li><p><strong>Response Handling</strong>:</p>
+<ul class="simple">
+<li><p>Prints the HTTP status code to confirm the success or failure of the request.</p></li>
+<li><p>Prints the JSON response from the API, which contains the prediction result.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Use Case</strong>:</p>
+<ul class="simple">
+<li><p>This setup is ideal for integrating the machine learning model into a web application or service, allowing real-time predictions based on user-provided data.</p></li>
+</ul>
+<p><strong>Output Example</strong>:</p>
+<ul class="simple">
+<li><p><strong>Status Code</strong>: Indicates the success of the API call (e.g., 200 for success).</p></li>
+<li><p><strong>Response JSON</strong>: Contains the prediction result, such as <code class="docutils literal notranslate"><span class="pre">{&quot;prediction&quot;:</span> <span class="pre">1}</span></code>, where the value represents the predicted disease outcome.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Define test payload</span>
+<span class="n">test_case</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Pregnancies&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="s2">&quot;Age&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s2">&quot;Glucose&quot;</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span>
+    <span class="s2">&quot;BloodPressure&quot;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+    <span class="s2">&quot;SkinThickness&quot;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+    <span class="s2">&quot;Insulin&quot;</span><span class="p">:</span> <span class="mi">230</span><span class="p">,</span>
+    <span class="s2">&quot;BMI&quot;</span><span class="p">:</span> <span class="mf">40.0</span><span class="p">,</span>
+    <span class="s2">&quot;DiabetesPedigreeFunction&quot;</span><span class="p">:</span> <span class="mf">0.750</span>
+<span class="p">}</span>
+<span class="c1"># Make POST request</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;http://127.0.0.1:8000/predict&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">test_case</span><span class="p">)</span>
+
+<span class="c1"># Print response</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status Code:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Response JSON:&quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Status Code: 200
+Response JSON: {&#39;prediction&#39;: 0}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="eas503/video1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Model Presentation Video</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="FastApiDoc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">BackEnd-FastAPI Code</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

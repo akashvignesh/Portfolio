@@ -6,8 +6,15 @@ chapters:
   - file: portfolio
     title: Portfolio
 
-  - file: eas503/EAS503
-    title: EAS503 Project Summary
+  - file: eas503/EAS503Summary
+    title: Disease Prediction Model-EAS503 Project Summary
     sections:
-      - file: eas503/video
-        title: My Video
+      - file: eas503/video1.ipynb
+        title: Model Presentation Video
+      - file: NormalizationVerisonTwo.ipynb
+        title: Disease Prediction Model Code
+      - file: FastApiDoc
+        title: BackEnd-FastAPI Code
+      - file: StreamlitAppDoc
+        title: FrontEnd-Streamlit Code
+        

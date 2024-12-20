@@ -1,61 +1,57 @@
 ## Portfolio
 
-### Janarthan Aravindan Aathavan
-
-**Email:** janartha@buffalo.edu  
-**LinkedIn:** [linkedin.com/in/jaathavan](http://linkedin.com/in/jaathavan)  
-**Location:** Buffalo, New York
-
----
-
-## Education
-
-### University at Buffalo, Buffalo, New York  
-**Master of Science in Engineering Science (Data Science)** (Aug 2024 - Present)  
-- Relevant Subjects: Data Models and Query Language, Machine Learning, Statistical Learning, Data Mining, Numerical Math, Probability Theory, Programming and Database.
-
-### The American College, Madurai, India  
-**Master of Science in Physics** - First Class, WES GPA: 3.34 (Jun 2021 - Apr 2023)  
-- Relevant Subjects: Classical and Nonlinear Dynamics, Condensed Matter Physics, Electrodynamics, Mathematical Physics, Quantum Mechanics, Statistical Physics, Programming in C.
-- **Thesis:** Monte Carlo Studies on Extensive Air Shower Development; Design of Compact Fizeau Interferometer for Thin Film Thickness Measurement.
-
-### Loyola College, Chennai, India  
-**Bachelor of Science in Physics** - First Class with Distinction, WES GPA: 3.74 (Jun 2014 - Apr 2017)  
-- Relevant Subjects: Applied Mathematics, Electricity and Magnetism, Electronics I & II, Mechanics, Solid State Physics, Atomic and Nuclear Physics.
+# Akash Sureshkumar  
+**Buffalo, New York**  
+📞 **(716) 709-0514**  
+✉️ **[asureshk@buffalo.edu](mailto:asureshk@buffalo.edu)**  
+🌐 **[LinkedIn](https://www.linkedin.com/in/akash-sureshkumar/)** 
 
 ---
 
-## Skills and Certifications
+## 🎓 Education  
 
-### Skills
+**The State University of New York at Buffalo**  
+*Master of Engineering Science in Data Science* (Expected June 2026)  
+📚 *Relevant Courses:* Statistical Learning, Deep Learning, Data Models, Natural Language Processing, and Data Visualization  
 
-#### Programming
-- Python, C, MATLAB, R, Node.js, AngularJS, TypeScript, SQL, Bootstrap
-
-#### Tools
-- Visual Studio Code, Jupyter Notebook, Mathcad, MySQL, Postman, Git, CORSIKA, Microsoft Office (Excel, Word, PowerPoint)
-
-#### Other Skills
-- Technical Proposal Writing  
-- Research & Data Analysis: Experiment Design, Data Cleaning, Interpretation, and Insight Extraction  
-
-#### Languages
-- English (Fluent), Tamil (Native), Japanese (JLPT N4 - 86.9 percentile)
+**Sri Sairam Engineering College, Tamil Nadu, India**  
+*Bachelor of Engineering in Computer Science Engineering* (June 2022)  
+📚 *Relevant Courses:* Data Structures, Operating Systems, Machine Learning, and Software Engineering  
 
 ---
 
-### Certifications
-- Learn to Code with Python  
-- AWS Foundation (In progress, expected 2024)
+## 💼 Experience  
+
+**Guardian India Operations Private Limited, Tamil Nadu, India**  
+*Engineer* (Apr 2022 – Aug 2024)  
+- Developed high-performance APIs with **Java** and **Spring Boot**, boosting system efficiency by 30%.  
+- Spearheaded the migration to a microservices architecture, improving modularity and deployment speed by 40%.  
+- Managed over 20 microservices with robust **unit and integration testing** using JUnit and Mockito.  
+- Collaborated in **Agile Scrum environments**, delivering detailed API and microservices documentation.  
 
 ---
 
-## Projects
+## 🛠️ Technical Skills  
 
-### ATLAS Project
-- Analyzed particle data using ATLANTIS and ROOT software, applying statistical methods and C++ programming to study electron and muon momentum distributions in high-energy particle collisions.
-- Calibrated the electromagnetic calorimeter with Z (^0) boson decay data, achieving a precise energy calibration of 90.46 GeV to ensure accurate and reliable measurements in particle physics.
+**Languages:** Java, Python, R, MATLAB, JavaScript, SQL, HTML/CSS  
+**Frameworks & Tools:** React.js, Node.js, Spring Boot, TensorFlow, Tableau, AWS, PostgreSQL  
+**Software & Practices:** Agile, ETL, MySQL, Git, Jupyter Notebooks, Power BI  
 
-### Properties of Elementary Particles
-- Investigated 24 GeV proton-proton reactions using detailed bubble chamber data analysis, determining total and elastic cross sections to understand the fundamental interaction dynamics.
-- Identified particles produced in collisions and weak decays, using sophisticated statistical methods to estimate particle production rates and validate theoretical models in particle physics research.
+---
+
+## 🔬 Projects  
+
+**Efficient Stock Prediction Technique**  
+*April 2021*  
+- Implemented a **Support Vector Machine** model for accurate financial forecasting.  
+
+**Medical Assistance and Pill Reminder**  
+*April 2022*  
+- Designed an OCR-powered Android app with pill recognition, audible reminders, and online consultation features.  
+
+---
+
+## 📖 Publications  
+
+- Presented “Efficient Stock Prediction Technique” at the **2nd National Conference on Smart Innovations in Communications and Computing**.  
+- Showcased research at the **AICTE Sponsored International Conference on Emerging Trends in Communication and Networking**.  
