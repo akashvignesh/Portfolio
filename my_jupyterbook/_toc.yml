@@ -1,0 +1,13 @@
+# Table of contents
+format: jb-book
+root: intro_root
+
+chapters:
+  - file: portfolio
+    title: Portfolio
+
+  - file: eas503/EAS503
+    title: EAS503 Project Summary
+    sections:
+      - file: eas503/video
+        title: My Video
