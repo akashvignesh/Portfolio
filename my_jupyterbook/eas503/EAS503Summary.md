@@ -3,6 +3,9 @@
 ## Project Link
 **[EAS503 Project - Disease Prediction Model Link](https://diseasepredictionsystem-4hpm23wvvc7a9scjijxitt.streamlit.app/)**
 
+**[EAS503 Project - Disease Prediction Git Hub Link](https://github.com/akashvignesh/diseasePredictionSystem/tree/model_tuning)**
+
+
 ## Project Goal
 The "Disease Prediction Model" aims to harness the power of machine learning to predict potential diseases from patient data. This system is designed to assist healthcare professionals in making informed decisions and improving patient outcomes through early diagnosis and timely intervention.
 ## Code Links

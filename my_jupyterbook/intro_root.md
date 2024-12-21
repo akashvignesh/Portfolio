@@ -22,3 +22,8 @@ I have presented my research at national and international conferences, includin
 
 ## Overview of My Project
 The "Disease Prediction Model" is one of my most significant projects. Using machine learning techniques, I developed a system that predicts potential diseases based on patient data. This project reflects my passion for combining data science with healthcare, as it aims to provide timely insights that can improve patient care and outcomes. It exemplifies my ability to build innovative, practical solutions that address real-world challenges.
+
+## Project Link
+**[EAS503 Project - Disease Prediction Model Link](https://diseasepredictionsystem-4hpm23wvvc7a9scjijxitt.streamlit.app/)**
+
+**[EAS503 Project - Disease Prediction Git Hub Link](https://github.com/akashvignesh/diseasePredictionSystem/tree/model_tuning)**
